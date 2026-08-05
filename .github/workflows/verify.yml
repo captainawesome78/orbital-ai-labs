@@ -1,0 +1,20 @@
+name: Verify labs
+
+# Every code block in every lab must actually run. A broken lab is a broken
+# promise to the reader, so this gates the repo.
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: "0 6 * * 1"      # weekly: catches upstream package drift
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install orbitherm orbitplan radshield
+      - run: python verify_labs.py
