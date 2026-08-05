@@ -1,6 +1,6 @@
 # Lab 3 — Getting data home
 
-**Question:** poes the result fit through the link, and does a laser mesh rescue it?
+**Question:** does the result fit through the link, and does a laser mesh rescue it?
 
 **Time:** ~50 min · **Tool:** `orbitplan`
 
