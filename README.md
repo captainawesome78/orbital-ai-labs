@@ -91,3 +91,19 @@ the labs point at it.
 ## License
 
 Apache-2.0. Use it, fork it, teach from it.
+
+## Corporate delivery
+
+These labs are free and stay free. If you would rather have them run for your team — with the
+capstone swapped for one of your own missions, and the models driven by your contracted
+ground-station and launch pricing rather than public list rates — that is available as a
+two-day workshop, on-site or remote.
+
+**Sizing AI for Orbit** — two days, 15 people maximum. Day one covers thermal, power and
+compute, downlink and mesh, and radiation tolerance. Day two covers placement economics, a
+red-team session on real feasibility claims, and a capstone your teams present and defend.
+You get a written summary of each team's recommendation within a week.
+
+The first three clients get 50% off list in exchange for a reference.
+
+Enquiries: mailmenaveed88@gmail.com
