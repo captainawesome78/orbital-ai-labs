@@ -84,8 +84,13 @@ for orient in ["deep_space", "nadir", "sun_facing"]:
 
 **Exercise.** Take the 100 kW payload from 1.2. Compute the required area for each
 orientation using `p.required_area(power_w, target_temp_c, emissivity, env_flux)`.
-Sun-facing needs roughly twice the area of the deep-space case — an attitude
-constraint that silently doubles your radiator mass.
+Sun-facing needs **3.06×** the area of the deep-space case (593.6 m² against 194.0 m²);
+nadir needs 1.57×. An attitude constraint that silently triples your radiator mass.
+
+The penalty is worse than linear intuition suggests because absorbed flux subtracts from
+your *net* rejection. At 50 °C you only radiate ~526 W/m²; losing 357 W/m² of that to
+absorbed sunlight leaves 169 W/m² net, and the area you need scales with the reciprocal
+of what is left.
 
 ## 1.4 Evaluate a complete design
 
