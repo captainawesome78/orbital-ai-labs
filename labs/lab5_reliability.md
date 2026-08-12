@@ -56,11 +56,18 @@ print(f"repaired {repaired} array(s)")
 print(f"after   max|w| = {np.abs(params['W1']).max():.4f}")
 ```
 
-**Exercise.** Raise `n_flips` until repair can no longer keep up. What's the
-practical limit, and how does it compare to realistic SEU rates for your orbit and
-shielding? (Rates vary by orders of magnitude between LEO and a South Atlantic
-Anomaly pass — this is where you need real radiation-environment data, not a
-default.)
+**Exercise.** Raise `n_flips` and find where repair stops keeping up. You will not find
+it: `WeightGuard` restores wholesale from a golden copy rather than correcting errors,
+so it survives every element of the array being corrupted.
+
+The real limits are elsewhere, and they are the ones to take to a design review. The
+golden copy doubles your weight memory — mass, power, launch cost. The copy sits in the
+same radiation environment and is not itself protected. And corruption between two
+checks is never flagged, so the tunable that matters is check *frequency*, traded
+against the compute cost of checksumming.
+
+(SEU rates vary by orders of magnitude between benign LEO and a South Atlantic Anomaly
+pass — this is where you need real radiation-environment data, not a default.)
 
 ## 5.3 Contain what you can't repair
 
@@ -92,9 +99,14 @@ Protection isn't free. Checksums cost compute, and the golden copy costs memory 
 which costs mass, which costs launch.
 
 **Exercise.** Return to Lab 2. If radiation protection adds 15% compute overhead,
-recompute your inferences-per-day. For the EO cases the margin was enormous so it
-won't bite. For the LLM-serving case it will. **Reliability engineering has to be
-in the power budget from the start, not bolted on after the design closes.**
+recompute your inferences-per-day. The EO case absorbs it without noticing — 15% of
+2.73 mW is 0.41 mW. The LLM-serving case does not change its *verdict* either; it was
+thermal-bound before and stays thermal-bound. What changes is the outcome: at a fixed
+773 W ceiling, 15% more compute per inference is 13% fewer tokens served.
+
+A bottleneck that does not move is not the same as an overhead that does not cost you,
+and the summary line only shows you the first. **Reliability engineering has to be in
+the power budget from the start, not bolted on after the design closes.**
 
 ## Checkpoint
 
