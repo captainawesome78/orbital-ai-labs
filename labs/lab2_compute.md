@@ -83,9 +83,14 @@ print(plan.evaluate().summary())
 ```
 
 **Exercise.** The verdict is `thermal`, not `power` — the 40 m² array makes
-7.4 kW while the 1.5 m² radiator caps compute at 773 W. Grow the radiator until
-the bottleneck moves to `power`. What area does that take, and what does that mass
-do to your launch cost (use `orbitherm` from Lab 1)?
+7.4 kW while the 1.5 m² radiator caps compute at 773 W. Grow the radiator and watch
+where the bottleneck goes. It does **not** go to `power`: at 8.0 m² the optical
+downlink takes over, and stays binding however large the radiator gets. You would need
+14.3 m² for thermal to stop binding before power, but a third constraint overtakes both
+first.
+
+That is the lesson worth keeping: relieving the binding constraint hands you whichever
+constraint is nearest, not the one you were reasoning about.
 
 This is Lab 1's lesson appearing again from the other side: **thermal binds before
 power almost every time.**
